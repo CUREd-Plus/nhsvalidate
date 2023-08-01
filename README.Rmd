@@ -1,0 +1,30 @@
+# NHS Digital Artificial Data
+
+NHS Digital make [artificial data](https://digital.nhs.uk/services/artificial-data) available for three sets of data
+Hospital Episode Statistics (HES) data, A&E, Admitted Patient Care and Outpatient. They provide two sets for each a
+sample and a full which are identical except in size (rows).
+
+## Validation
+
+The aim is to validate these data samples against the XML Schema provided at the [Technology Reference Update Distribution
+(TRUD)](https://isd.digital.nhs.uk/trud/users/guest/filters/0/home) which in this instance refers to several different
+aspects.
+
+### Data Validation
+
+The first thing to check is that the data as provided has variables which are as they are defined in the XML Schema,
+that is to say a string variable with a maximum length of 10 characters doesn't have > 10 characters in it. Dates and
+times are formatted as stated.
+
+Summaries of data completeness can then be made to show how much missing data there is.
+
+### Data Consistency
+
+Because a lot of events are temporarily related a number of checks can be made to ensure they are logically
+consistent. For example someones date of death can not predate their date of birth, or their date of discharge can not
+predate their admission date and so forth.
+
+### Duplicates
+
+Checks can also be made for duplicated data where rows of observations pertain to the same individual identifiers when
+they shouldn't.
