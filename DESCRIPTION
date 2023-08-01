@@ -1,0 +1,12 @@
+Package: nhsvalidate
+Title: Validate NHS Digital data against XML Schema
+Version: 0.0.0.9000
+Authors@R:
+    person("Neil", "Shephard", , "n.shephard@sheffield.ac.uk", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-8301-6857"))
+Description: NHS Digital provide data for different aspects of patient interaction. These are typically provided as CSV files and the structure and type of each field is described in XML Schema available from the Technology Reference Update Distribution (TRUD). These XML Schema can be used to automatically validate the data provisioned by NHS Digital.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports

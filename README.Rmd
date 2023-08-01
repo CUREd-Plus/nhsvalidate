@@ -7,7 +7,7 @@ sample and a full which are identical except in size (rows).
 ## Validation
 
 The aim is to validate these data samples against the XML Schema provided at the [Technology Reference Update Distribution
-(TRUD)](https://isd.digital.nhs.uk/trud/users/guest/filters/0/home) which in this instance refers to several different
+(TRUD)](https://isd.digital.nhs.uk/trud/users/guest/filters/0/home)+ which in this instance refers to several different
 aspects.
 
 ### Data Validation
