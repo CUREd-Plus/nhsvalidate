@@ -1,0 +1,80 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "nhsvalidate",
+  "description": "NHS Digital provide data for different aspects of patient interaction. These are typically provided as CSV files and the structure and type of each field is described in XML Schema available from the Technology Reference Update Distribution (TRUD). These XML Schema can be used to automatically validate the data provisioned by NHS Digital.",
+  "name": "nhsvalidate: Validate NHS Digital data against XML Schema",
+  "codeRepository": "https://github.com/CUREd-Plus/nhsvalidate",
+  "issueTracker": "https://github.com/CUREd-Plus/nhsvalidate/issues",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "0.0.0.9000",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.3.1 (2023-06-16)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Neil",
+      "familyName": "Shephard",
+      "email": "n.shephard@sheffield.ac.uk",
+      "@id": "https://orcid.org/0000-0001-8301-6857"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Neil",
+      "familyName": "Shephard",
+      "email": "n.shephard@sheffield.ac.uk",
+      "@id": "https://orcid.org/0000-0001-8301-6857"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "codemetar",
+      "name": "codemetar",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=codemetar"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 3.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    }
+  ],
+  "softwareRequirements": {
+    "1": {
+      "@type": "SoftwareApplication",
+      "identifier": "dataverifyr",
+      "name": "dataverifyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=dataverifyr"
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "10599847.332KB",
+  "readme": "https://github.com/CUREd-Plus/nhsvalidate/blob/main/README.md",
+  "contIntegration": "https://github.com/CUREd-Plus/nhsvalidate/actions/workflows/R-CMD-check.yaml"
+}

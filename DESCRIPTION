@@ -5,8 +5,15 @@ Authors@R:
     person("Neil", "Shephard", , "n.shephard@sheffield.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8301-6857"))
 Description: NHS Digital provide data for different aspects of patient interaction. These are typically provided as CSV files and the structure and type of each field is described in XML Schema available from the Technology Reference Update Distribution (TRUD). These XML Schema can be used to automatically validate the data provisioned by NHS Digital.
+URL: https://github.com/CUREd-Plus/nhsvalidate
+BugReports: https://github.com/CUREd-Plus/nhsvalidate/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Imports
+Imports:
+    dataverifyr
+Suggests:
+    codemetar,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
