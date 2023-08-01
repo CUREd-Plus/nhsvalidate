@@ -1,4 +1,4 @@
-co# All available hooks: https://pre-commit.com/hooks.html
+# All available hooks: https://pre-commit.com/hooks.html
 # R specific hooks: https://github.com/lorenzwalthert/precommit
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks

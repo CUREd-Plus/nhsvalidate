@@ -27,7 +27,7 @@ extract_structure <- function(xml_file) {
   names(types) <- c("simple", "complex")
   types$complex <- xml2::xml_find_all(xml, "//xs:complexType", flatten = FALSE)
   types$simple <- xml2::xml_find_all(xml, "//xs:simpleType", flatten = FALSE)
-  return(types)
+  types
 }
 
 
@@ -93,7 +93,7 @@ create_simple_ruleset <- function(x) {
       pattern_values = x$pattern_values[i]
     )
   }
-  return(rules)
+  rules
 }
 
 #' Create a simple rule from the extracted information conditional on what values are present.
@@ -116,18 +116,27 @@ create_simple_rule <- function(name,
                                max_inclusive,
                                enumeration_values,
                                pattern_values) {
+  print(paste0("enumeration_values    : ", enumeration_values[[1]]))
+  print(paste0("!is.null(enumeration_values)  : ", !is.null(enumeration_values)))
+  print(paste0("length(enumeration_values[[1]]) > 0 : ", length(enumeration_values[[1]]) > 0))
   if (!is.na(min_length) && !is.na(max_length)) {
+    print("Making a MIN MAX rule")
     min_max_rule <- create_min_max_rule(name, min_length, max_length)
-    return(min_max_rule)
+    print(min_max_rule)
+    min_max_rule
   } else if (is.na(min_length) && !is.na(max_length)) {
+    print("Making a LENGTH rule")
     length_rule <- create_length_rule(name, max_length)
-    return(length_rule)
+    print(length_rule)
+    length_rule
   } else if (!is.null(enumeration_values) && length(enumeration_values[[1]]) > 0) {
+    print("Making a CATEGORICAL rule")
     categorical_rule <- create_categorical_rule(name, enumeration_values)
-    return(categorical_rule)
+    categorical_rule
   } else if (!is.null(pattern_values) && length(pattern_values[[1]]) > 0) {
+    print("Making a PATTERN rule")
     pattern_rule <- create_categorical_rule(name, pattern_values)
-    return(pattern_rule)
+    pattern_rule
   }
 }
 
@@ -145,13 +154,12 @@ create_simple_rule <- function(name,
 create_min_max_rule <- function(name, min_length, max_length) {
   col <- as.symbol(name)
   colname <- eval(name)
-  new_rule <- dataverifyr::rule(.(col) >= .(min_length) & .(col) <= .(max_length),
+  dataverifyr::rule(.(col) >= .(min_length) && .(col) <= .(max_length),
     name = .(colname),
     allow_na = TRUE
   ) |>
     bquote() |>
     evalq()
-  return(new_rule)
 }
 
 #' Create a maximum length rule for string variables.
@@ -167,13 +175,12 @@ create_min_max_rule <- function(name, min_length, max_length) {
 create_length_rule <- function(name, var_length) {
   col <- as.symbol(name)
   colname <- eval(name)
-  new_rule <- dataverifyr::rule(.(col) < .(var_length),
+  dataverifyr::rule(.(col) < .(var_length),
     name = .(colname),
     allow_na = TRUE
   ) |>
     bquote() |>
-    eval()
-  return(new_rule)
+    evalq()
 }
 
 #' Create a rule for categorical variables.
@@ -187,13 +194,12 @@ create_length_rule <- function(name, var_length) {
 create_categorical_rule <- function(name, values) {
   col <- as.symbol(name)
   colname <- eval(name)
-  new_rule <- dataverifyr::rule(.(col) %in% .(values),
+  dataverifyr::rule(.(col) %in% .(values),
     name = .(colname),
     allow_na = TRUE
   ) |>
     bquote() |>
     evalq()
-  return(new_rule)
 }
 
 #' Create a pattern rule for variables.
@@ -207,25 +213,24 @@ create_categorical_rule <- function(name, values) {
 create_pattern_rule <- function(name, pattern) {
   col <- as.symbol(name)
   colname <- eval(name)
-  new_rule <- dataverifyr::rule(col == regexpr(pattern),
+  dataverifyr::rule(col == regexpr(pattern),
     name = .(colname),
     allow_na = TRUE
   ) |>
     bquote() |>
     evalq()
-  return(new_rule)
 }
 
-#' Write ruleset to YAML file.
+#' Write a ruleset to YAML file.
 #'
 #' If the specified directory path doesn't exist it will be created.
 #'
 #' @param x list ruleset created by create_simple_ruleset() or create_complex_ruleset().
 #' @param output_dir str Directory to save YAML file to.
-#' @param yaml_file str Name of YAML file rules are to be written to under output_dir.
+#' @param yaml_file str Name of YAML file rules are to be written to under output_dir, defaults to 'rules.yaml'
 #' @export
 #' @examples
-write_rules_to_yaml <- function(x, output_dir, yaml_file) {
+write_rules_to_yaml <- function(x, output_dir = "./", yaml_file = "rules.yaml") {
   if (!dir.exists(file.path(output_dir))) {
     dir.create(output_dir)
   }
@@ -234,12 +239,12 @@ write_rules_to_yaml <- function(x, output_dir, yaml_file) {
 
 #' Extract information from complex data types.
 #'
-#' @param x list List of simple XML schema extracted using extract_structure
+#' @param x list List of complex XML schema extracted using extract_structure
 #' @export
 #' @examples
 #'
 #' types <- extract_structure("path/to/xml_schema.xsd")
-#' simple_info <- extract_info_simple(types$complex)
-#' names(simple_info)
+#' complex_info <- extract_info_complex(types$complex)
+#' names(complex_info)
 extract_info_complex <- function(x) {
 }

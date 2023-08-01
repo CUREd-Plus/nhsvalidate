@@ -259,7 +259,7 @@ co-erced into the following table.
 | `PersonBirthDate`                                                         | 4                                         | `CDS_011_Emergency_Care-V4-0.xsd`               |
 |                                                                           | 2                                         | `CDS-XML_Standard_Data_Elements-V4-0.xsd`       |
 
-## R and XML
+## R
 
 Packages tested for working with XML data are detailed below. The article [Using xml schema and xslt in R |
 R-bloggers](https://www.r-bloggers.com/2017/01/using-xml-schema-and-xslt-in-r/) may be a useful reference.
@@ -285,6 +285,12 @@ XMLSchema::readSchema()
 High-level R package for working with HTML and XML data from R.
 
 This may be useful if any significant manipulation of the data is required.
+
+### [dataverifyr](https://davzim.github.io/dataverifyr/index.html)
+
+A package for verifying data conforms to user defined rules, which in this case are coming from the XML schemas. Works
+with various data types and connections including DuckDB connections.
+
 
 ## Links
 
