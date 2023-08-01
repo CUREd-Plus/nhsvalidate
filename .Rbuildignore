@@ -1,1 +1,4 @@
-^LICENSE\.md$
+^README\.Rmd$
+^\.github$
+^\.pre-commit-config\.yaml$
+^codemeta\.json$
